@@ -1,36 +1,30 @@
 public class Person
 {
-    protected string ssn = "444-55-6666";
-    protected string name = "John L. Malgraine";
+    protected string id = "1307";
+    protected string name = "Arun Mainali";
 
     public virtual void GetInfo()
     {
         Console.WriteLine($"Name: {name}");
-        Console.WriteLine($"SSN: {ssn}");
+        Console.WriteLine($"ID: {id}");
     }
 }
 class Employee : Person
 {
-    public readonly string id = "ABC567EFG";
+    public readonly string id = "ABCDEFG";
     public override void GetInfo()
     {
-        // Calling the base class GetInfo method:
         base.GetInfo();
         Console.WriteLine($"Employee ID: {id}");
     }
 }
 
-class TestClass
+class Program
 {
     static void Main()
     {
         Employee E = new Employee();
         E.GetInfo();
+        Console.WriteLine("This code is run by Arun Mainali");
     }
 }
-/*
-Output
-Name: John L. Malgraine
-SSN: 444-55-6666
-Employee ID: ABC567EFG
-*/
