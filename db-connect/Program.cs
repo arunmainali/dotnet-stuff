@@ -3,82 +3,115 @@ using DbConnect.Data;
 
 using var db = new AppDbContext();
 
-db.Database.EnsureCreated();
-
-//
-// CREATE
-//
-var user = new User
+while (true)
 {
-    Name = "Alice",
-    Age = 20
-};
+    Console.WriteLine("\n--- User Management ---");
+    Console.WriteLine("1. Add User");
+    Console.WriteLine("2. View All Users");
+    Console.WriteLine("3. Update User");
+    Console.WriteLine("4. Delete User");
+    Console.WriteLine("5. Exit");
+    Console.Write("Choose an option: ");
 
-db.Users.Add(user);
-db.SaveChanges();
+    var input = Console.ReadLine();
 
-Console.WriteLine("User inserted.");
+    switch (input)
+    {
+        case "1":
+            Console.Write("Enter name: ");
+            var name = Console.ReadLine() ?? "";
+            Console.Write("Enter age: ");
+            if (int.TryParse(Console.ReadLine(), out int age))
+            {
+                var newUser = new User { Name = name, Age = age };
+                db.Users.Add(newUser);
+                db.SaveChanges();
+                Console.WriteLine("User added successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Invalid age.");
+            }
+            break;
 
-//
-// READ (all users)
-//
-Console.WriteLine("\nUsers:");
+        case "2":
+            var users = db.Users.ToList();
+            if (users.Any())
+            {
+                Console.WriteLine("\nUsers:");
+                foreach (var u in users)
+                {
+                    Console.WriteLine($"ID: {u.Id}, Name: {u.Name}, Age: {u.Age}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("No users found.");
+            }
+            break;
 
-foreach (var u in db.Users)
-{
-    Console.WriteLine($"{u.Id} {u.Name} ({u.Age})");
-}
+        case "3":
+            Console.Write("Enter User ID to update: ");
+            if (int.TryParse(Console.ReadLine(), out int updateId))
+            {
+                var userToUpdate = db.Users.Find(updateId);
+                if (userToUpdate != null)
+                {
+                    Console.Write($"Enter new name (current: {userToUpdate.Name}): ");
+                    var newName = Console.ReadLine();
+                    if (!string.IsNullOrWhiteSpace(newName))
+                    {
+                        userToUpdate.Name = newName;
+                    }
+                    
+                    Console.Write($"Enter new age (current: {userToUpdate.Age}): ");
+                    var ageInput = Console.ReadLine();
+                    if (int.TryParse(ageInput, out int newAge))
+                    {
+                        userToUpdate.Age = newAge;
+                    }
 
-//
-// READ (by primary key)
-//
-var existingUser = db.Users.Find(user.Id);
+                    db.SaveChanges();
+                    Console.WriteLine("User updated successfully.");
+                }
+                else
+                {
+                    Console.WriteLine("User not found.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid ID.");
+            }
+            break;
 
-if (existingUser != null)
-{
-    Console.WriteLine($"\nFound: {existingUser.Name}");
-}
+        case "4":
+            Console.Write("Enter User ID to delete: ");
+            if (int.TryParse(Console.ReadLine(), out int deleteId))
+            {
+                var userToDelete = db.Users.Find(deleteId);
+                if (userToDelete != null)
+                {
+                    db.Users.Remove(userToDelete);
+                    db.SaveChanges();
+                    Console.WriteLine("User deleted successfully.");
+                }
+                else
+                {
+                    Console.WriteLine("User not found.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid ID.");
+            }
+            break;
 
-//
-// UPDATE
-//
-if (existingUser != null)
-{
-    existingUser.Name = "Bob";
-    existingUser.Age = 25;
+        case "5":
+            return;
 
-    db.SaveChanges();
-
-    Console.WriteLine("\nUser updated.");
-}
-
-//
-// READ again
-//
-Console.WriteLine("\nAfter update:");
-
-foreach (var u in db.Users)
-{
-    Console.WriteLine($"{u.Id} {u.Name} ({u.Age})");
-}
-
-//
-// DELETE
-//
-if (existingUser != null)
-{
-    db.Users.Remove(existingUser);
-    db.SaveChanges();
-
-    Console.WriteLine("\nUser deleted.");
-}
-
-//
-// READ again
-//
-Console.WriteLine("\nAfter delete:");
-
-foreach (var u in db.Users)
-{
-    Console.WriteLine($"{u.Id} {u.Name} ({u.Age})");
+        default:
+            Console.WriteLine("Invalid option. Please try again.");
+            break;
+    }
 }
