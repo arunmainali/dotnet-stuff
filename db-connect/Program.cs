@@ -10,7 +10,10 @@ while (true)
 	Console.WriteLine("2. View All Users");
 	Console.WriteLine("3. Update User");
 	Console.WriteLine("4. Delete User");
-	Console.WriteLine("5. Exit");
+	Console.WriteLine("5. Search User");
+	Console.WriteLine("6. Employee Tasks");
+	Console.WriteLine("7. Bank Tasks");
+	Console.WriteLine("8. Exit");
 	Console.Write("Choose an option: ");
 
 	var input = Console.ReadLine();
@@ -130,9 +133,19 @@ while (true)
 			break;
 
 		case "6":
+			DbConnect.EmployeeTasks.RunEmployeeTasks(db);
+			break;
+
+		case "7":
+			DbConnect.BankTasks.RunBankTasks(db);
+			break;
+
+		case "8":
 			return;
 		default:
 			Console.WriteLine("Invalid option. Please try again.");
 			break;
 	}
+
+	Console.WriteLine("This code is run by Arun Mainali, 80010712");
 }
