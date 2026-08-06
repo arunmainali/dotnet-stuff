@@ -17,5 +17,9 @@ namespace MyApp.Namespace
 	{
 	    return View();
 	}
+
+	public ActionResult SignUp() {
+		return View();
+	}
     }
 }
