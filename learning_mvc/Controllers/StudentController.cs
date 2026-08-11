@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 
+using learning_mvc;
+
 // controller = StudentController
 // action = Index
 
@@ -19,6 +21,14 @@ namespace MyApp.Namespace
 	}
 
 	public ActionResult SignUp() {
+		return View();
+	}
+
+	[HttpPost]
+	public ActionResult SignUp(StudentView student) {
+		if (ModelState.IsValid) {
+			// something
+		}
 		return View();
 	}
     }

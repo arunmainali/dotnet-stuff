@@ -7,9 +7,9 @@ public class StudentView
 	[Key]
 	public int id {get; set; }
 
-	[Required]
+	[Required (ErrorMessage = "Full name is required")]
 	public string name {get; set; }
 
-	[Required]
+	[Required (ErrorMessage = "Email is required")]
 	public string email {get; set; }
 }
