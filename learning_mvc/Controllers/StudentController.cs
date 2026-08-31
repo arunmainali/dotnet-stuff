@@ -27,7 +27,7 @@ namespace MyApp.Namespace
 	[HttpPost]
 	public ActionResult SignUp(StudentView student) {
 		if (ModelState.IsValid) {
-			// something
+			ViewBag.Message = student.name + " ; Record Submitted Successfully" + student.email + " is the email";
 		}
 		return View();
 	}
