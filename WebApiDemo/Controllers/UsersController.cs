@@ -42,5 +42,35 @@ namespace WebApiDemo.Controllers
             db.Users.Add(user);
             db.SaveChanges();
         }
+
+        // PUT: api/Users/UpdateUser/1
+        [HttpPut]
+        [Route("UpdateUser/{id}")]
+        public IActionResult Put(int id, User user)
+        {
+            var existingUser = db.Users.Find(id);
+            if (existingUser == null)
+            {
+                return NotFound();
+            }
+            existingUser.Name = user.Name;
+            db.SaveChanges();
+            return Ok();
+        }
+
+        // DELETE: api/Users/DeleteUser/1
+        [HttpDelete]
+        [Route("DeleteUser/{id}")]
+        public IActionResult Delete(int id)
+        {
+            var user = db.Users.Find(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            db.Users.Remove(user);
+            db.SaveChanges();
+            return Ok();
+        }
     }
 }
