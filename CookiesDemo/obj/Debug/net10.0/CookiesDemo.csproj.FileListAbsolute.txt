@@ -95,3 +95,4 @@
 /Users/arunmainali/Desktop/net/CookiesDemo/obj/Debug/net10.0/CookiesDemo.pdb
 /Users/arunmainali/Desktop/net/CookiesDemo/obj/Debug/net10.0/CookiesDemo.genruntimeconfig.cache
 /Users/arunmainali/Desktop/net/CookiesDemo/obj/Debug/net10.0/ref/CookiesDemo.dll
+/Users/arunmainali/Desktop/net/CookiesDemo/obj/Debug/net10.0/CookiesDemo.sourcelink.json

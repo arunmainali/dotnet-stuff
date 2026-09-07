@@ -41,8 +41,8 @@ public class UserController : Controller {
 	[HttpPost]
 	public ActionResult SetHiddenFieldValue(User user) {
 		var id = user.Id;
-		// ViewBag.ID = id;
-		// TempData["ID"] = id;
+		ViewBag.ID = id;
+		TempData["ID"] = id;
 		return View(user);
 	}
 }

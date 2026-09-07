@@ -300,3 +300,4 @@
 /Users/arunmainali/Desktop/net/SessionDemo/bin/Debug/net10.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 /Users/arunmainali/Desktop/net/SessionDemo/obj/Debug/net10.0/SessionDemo.csproj.AssemblyReference.cache
 /Users/arunmainali/Desktop/net/SessionDemo/obj/Debug/net10.0/SessionD.22774EDB.Up2Date
+/Users/arunmainali/Desktop/net/SessionDemo/obj/Debug/net10.0/SessionDemo.sourcelink.json
